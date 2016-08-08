@@ -5,6 +5,7 @@ $toplist_basepath = '/mods/toplist/';
 $toplist_includes = [
   'toplist-item-post-type.php',
   'toplist-item-review-post-type.php',
+  'toplist-association-metabox.php',
   'toplistcontroller.php',
   'toplistmodel.php',
   'postfilter.php',

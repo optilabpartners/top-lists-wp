@@ -40,17 +40,17 @@
 <td></td>
 <td><input type="text" class="form-control name-input" id="nameInput" value="<%= name %>"></td>
 <td><input type="text" class="form-control description-input" id="descriptionInput" value="<%= description %>"></td>
-<td><button id="btnUpdate" class="button button-primary button-small">Update</button> <button id="btnCancelEdit" class="button button-default button-small">Cancel</button></td>
+<td><div class="btn-group" role="group" aria-label="actions"><button id="btnUpdate" class="btn button button-primary button-small">Update</button> <button id="btnCancelEdit" class="btn button button-default button-small">Cancel</button></div></td>
 </script>
 <!-- End template -->
 
 
 <!-- Template -->
 <script type="text/template" id="toplist-list-single-template">
-<td><button id="btnSelect" class="button button-primary button-small">Select</button>&nbsp;<span class="name"><code>[toplist id="<%= id %>"]</code></span></td>
+<td><button id="btnSelect" class="button button-primary button-small">Show Items</button>&nbsp;<span class="name"><code>[toplist id="<%= id %>" limit="5"]</code></span></td>
 <td><span class="name"><%= name %></span></td>
 <td><span class="description"><%= description %></span></td>
-<td><button id="btnEdit" class="button button-default button-small">Edit</button> <button id="btnDelete" class="button button-default button-small">Delete</button></td>
+<td><div class="btn-group" role="group" aria-label="actions"><button id="btnEdit" class="btn button button-default button-small">Edit</button> <button id="btnDelete" class="btn button button-default button-small">Delete</button></td></td>
 </script>
 <!-- End template -->
 
