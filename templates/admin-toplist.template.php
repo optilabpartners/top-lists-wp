@@ -24,14 +24,15 @@
 		</div>
 		<div class="col-sm-6 col-md-4">
 			<table class="wp-list-table widefat striped table-responsive">
-			<thead>
-				<tr><th>TopList Item <em>(Ranked)</em></th>
-				<th>Action</th></tr>
-			</thead>
-			<tbody class="toplist-items" id="toplist-items-container-template">
-				<tr><td colspan="2"><div class="alert alert-warning">Select a Toplist to show TopList Items</div></td></tr>
-			</tbody>
+				<thead>
+					<tr><th>TopList Item <em>(Ranked)</em></th>
+					<th>Action</th></tr>
+				</thead>
+				<tbody class="toplist-items sortable" id="toplist-items-container-template">
+					<tr><td colspan="2"><div class="alert alert-warning">Select a Toplist to show TopList Items</div></td></tr>
+				</tbody>
 			</table>
+
 		</div>
 	</div>
 </div>
@@ -57,9 +58,7 @@
 
 <!-- Template -->
 <script type="text/template" id="toplist-items-list-template">
-<tr>
-<td><span class="name"><%= post_title %></span></td>
+<td><span class="glyphicon glyphicon-sort" aria-hidden="true"></span>&nbsp;<span class="name"><%= post_title %></span></td>
 <td><a id="btnEdit" href="/wp-admin/post.php?post=<%= ID %>&amp;action=edit" class="button button-default button-small">Edit</a></td>
-</tr>
 </script>
-<!-- End template -->
+<!-- End template

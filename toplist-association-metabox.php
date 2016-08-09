@@ -77,6 +77,9 @@ class TopListAssociationMetaBox extends CodeBox\CodeBox
 
     foreach ($toplists as $toplist) {
       add_post_meta($post_id, 'toplist_item_toplist', $toplist);
+      if (!get_post_meta( $post_id, 'toplist_item_toplist_' . $toplist . '_rank', true )) {
+        add_post_meta($post_id, 'toplist_item_toplist_' . $toplist . '_rank', 1);
+      }
     }
 
     

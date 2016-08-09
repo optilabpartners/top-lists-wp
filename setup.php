@@ -53,6 +53,10 @@ function setup() {
 	wp_enqueue_style('toplist/bootstrapcss', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', array(), null);
 	wp_enqueue_script('toplist/bootstrapjs', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', ['jquery'], null, true);
 	wp_enqueue_script('toplist/admin', Assets\asset_path('scripts/admin.js'), ['jquery', 'backbone'], null, true);
+	wp_enqueue_script( 'jquery-ui-core' );
+	wp_enqueue_script( 'jquery-ui-widget' );
+	wp_enqueue_script( 'jquery-ui-mouse' );
+	wp_enqueue_script( 'jquery-ui-sortable' );
 
 
 } );
@@ -60,6 +64,7 @@ function setup() {
 
 \add_action( 'wp_ajax_toplist', [__NAMESPACE__ . '\\TopListRequestHandler','topList'] );
 \add_action( 'wp_ajax_toplists', [__NAMESPACE__ . '\\TopListRequestHandler','toplists'] );
+\add_action( 'wp_ajax_toplist_item', [__NAMESPACE__ . '\\TopListRequestHandler','toplist_item'] );
 \add_action( 'wp_ajax_toplist_items', [__NAMESPACE__ . '\\TopListRequestHandler','toplist_items'] );
 
 
@@ -171,16 +176,46 @@ class TopListRequestHandler
 				    ),
 				);
 
+				\add_filter( 'posts_results', function($posts) use ($toplist_id) {
+
+					if (count($posts) > 0 ) {
+
+						foreach ($posts as &$post) {
+							if ($post->post_type = "toplist_item") {
+								$rank = get_post_meta($post->ID, 'toplist_item_toplist_' . $toplist_id . '_rank', true);
+								$post->rank = ($rank != "")? $rank: 0 ;
+								$post->toplist = $toplist_id;
+							}
+						}
+					}
+					return $posts;
+				} );
+
 				$query = new \WP_Query( $args );
 				if ($query->have_posts())
     				echo json_encode($query->posts);
 				break;
-			
+			case 'PUT':
+
+				var_dump($_POST);
+				break;
 		}
 		wp_die();
 
 	}
+
+	public static function toplist_item() {
+		$toplist = json_decode( file_get_contents( "php://input" ) );
+		$method = self::method_identifier();
+		switch ($method) {
+			case 'PUT':
+				var_dump($toplist);
+			break;
+		}
+
+	}
 }
+
 
 // add
 // TopList\TopListController::create(

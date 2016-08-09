@@ -19,14 +19,25 @@
 
 	var toplists = new TopList.Collection();
 
-
+	TopList.Item = Backbone.Model.extend({
+		idAttribute: "ID",
+		url: ajaxurl+'?action=toplist_item',
+		
+	});
 
 	TopList.ItemCollection = Backbone.Collection.extend({
-		idAttribute: "ID",
+		model: TopList.Item,
 		url: ajaxurl+'?action=toplist_items',
+
+		comparator: function(model) {
+			return model.get('rank');
+		}
 	});
 
 	var toplistItems = new TopList.ItemCollection();
+
+
+/*************************************************** TopList SingleView ******************************************************/
 
 	TopList.SingleView = Backbone.View.extend({
 		model: toplists.models,
@@ -90,6 +101,9 @@
 	    }
 	});
 
+
+/*************************************************** TopList SingleEditView ******************************************************/
+
 	TopList.SingleEditView = Backbone.View.extend({
 		model: toplists.models,
 		tagName: 'tr',
@@ -105,7 +119,8 @@
 
 
 
-	// Views List of toplist
+
+/*************************************************** TopList ListView ******************************************************/
 
 	TopList.ListView = Backbone.View.extend({
 		// model: toplists,
@@ -136,12 +151,38 @@
 		}
 	});
 
+
+	TopList.ItemView = Backbone.View.extend({
+	    tagName: 'tr',
+	    className: 'ui-state-default',
+	    template: _.template($('#toplist-items-list-template').html()),
+	    events: {
+	        'drop' : 'drop'
+	    },
+	    drop: function(event, index) {
+	        this.$el.trigger('update-sort', [this.model, index]);
+	    },        
+	    render: function() {
+	    	this.$el.html(this.template(this.model.toJSON()));
+	   		return this;
+	    }
+	});
+
+
+/*************************************************** TopList ItemsView ******************************************************/
+
+
 	TopList.ItemsView = Backbone.View.extend({
+
 		collection: toplistItems,
 		el: $('#toplist-items-container-template'),
+		events: {
+        	'update-sort' : 'updateSort'
+    	},
 		initialize: function() {
 			this.listenTo(this.collection, 'add', this.render);
 			this.listenTo(this.collection, 'change', this.render);
+
 			this.collection.fetch({
 				success: function(response) {
 					_.each(response.toJSON(), function(item){
@@ -153,19 +194,46 @@
 				}
 			});
 		},
-		render: function() {
-			var self = this;
-			this.$el.html('');
-			_.each(this.collection.toArray(), function(model) {
-				self.$el.append(self.addOne(model));
-			});
-			return this;
-		},
+		updateSort: function(event, model, position) {            
+	        this.collection.remove(model);
 
-		addOne: function(model) {
-			var modelTemplate = _.template($('#toplist-items-list-template').html());
-			return modelTemplate(model.toJSON());
-		}
+	        this.collection.each(function (model, index) {
+	            var ordinal = index;
+	            if (index >= position) {
+	                ordinal += 1;
+	            }
+	            model.set('rank', ordinal);
+	        });            
+
+	        model.set('rank', position);
+	        this.collection.add(model, {at: position});
+
+	        Backbone.sync('update', this.collection, { data: JSON.stringify(this.collection) });
+	        return this.render();
+	    },
+
+	    render: function() {
+	        this.$el.children().remove();
+	        this.collection.each(this.appendModelView, this);
+	        return this;
+	    },    
+	    appendModelView: function(model) {
+	        var el = new TopList.ItemView({model: model}).render().el;
+	        this.$el.append(el);
+	    },
+		// render: function() {
+		// 	var self = this;
+		// 	this.$el.html('');
+		// 	_.each(this.collection.toArray(), function(model) {
+		// 		self.$el.append(self.addOne(model));
+		// 	});
+		// 	return this;
+		// },
+
+		// addOne: function(model) {
+		// 	var modelTemplate = _.template($('#toplist-items-list-template').html());
+		// 	return modelTemplate(model.toJSON());
+		// }
 	});
 
 	var tLV = new TopList.ListView();
@@ -185,5 +253,12 @@
 
 	});
 
+	$( ".sortable" ).sortable({
+        // consider using update instead of stop
+        stop: function(event, ui) {
+            ui.item.trigger('drop', ui.item.index());
+        }
+    });
+    $( ".sortable" ).disableSelection();
 
 }(jQuery));
