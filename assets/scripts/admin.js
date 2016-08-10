@@ -208,7 +208,7 @@
 	        model.set('rank', position);
 	        this.collection.add(model, {at: position});
 
-	        Backbone.sync('update', this.collection, { data: JSON.stringify(this.collection) });
+	        Backbone.sync('update', this.collection, { contentType: 'application/json', data: JSON.stringify(this.collection) });
 	        return this.render();
 	    },
 
@@ -221,19 +221,7 @@
 	        var el = new TopList.ItemView({model: model}).render().el;
 	        this.$el.append(el);
 	    },
-		// render: function() {
-		// 	var self = this;
-		// 	this.$el.html('');
-		// 	_.each(this.collection.toArray(), function(model) {
-		// 		self.$el.append(self.addOne(model));
-		// 	});
-		// 	return this;
-		// },
 
-		// addOne: function(model) {
-		// 	var modelTemplate = _.template($('#toplist-items-list-template').html());
-		// 	return modelTemplate(model.toJSON());
-		// }
 	});
 
 	var tLV = new TopList.ListView();
@@ -260,5 +248,6 @@
         }
     });
     $( ".sortable" ).disableSelection();
+    $( ".sortable tr" ).css('cursor', 'move');
 
 }(jQuery));

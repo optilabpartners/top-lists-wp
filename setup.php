@@ -144,8 +144,10 @@ class TopListRequestHandler
 		$method = self::method_identifier();
 
 		$toplists = TopList\TopListController::fetchMany();	
+
 		echo json_encode($toplists);
 		wp_die();
+
 	}
 
 	public static function toplist_items() {
@@ -160,9 +162,10 @@ class TopListRequestHandler
 				    'post_status' => 'publish',
 				    
 				    //Order & Orderby Parameters
-				    'order'               => 'ASC',
-				    'orderby'             => 'menu_order date',
-				    'ignore_sticky_posts' => false,
+				    'order'       			=> 'ASC',
+				    'orderby'   			=> 'meta_value_num',
+					'meta_key'  			=> 'toplist_item_toplist_' . $toplist_id . '_rank',
+				    'ignore_sticky_posts' 	=> false,
 
 				    //Pagination Parameters
 				    'posts_per_page'      => -1,
@@ -194,11 +197,15 @@ class TopListRequestHandler
 				$query = new \WP_Query( $args );
 				if ($query->have_posts())
     				echo json_encode($query->posts);
-				break;
+			break;
 			case 'PUT':
-
-				var_dump($_POST);
-				break;
+				$toplist_items = json_decode(file_get_contents("php://input"));
+				if ($toplist_items) {
+					foreach ($toplist_items as $toplist_item) {
+						update_post_meta( $toplist_item->ID, 'toplist_item_toplist_' . $toplist_item->toplist . '_rank', $toplist_item->rank );
+					}
+				}
+			break;
 		}
 		wp_die();
 
@@ -207,9 +214,10 @@ class TopListRequestHandler
 	public static function toplist_item() {
 		$toplist = json_decode( file_get_contents( "php://input" ) );
 		$method = self::method_identifier();
+		
+		wp_die();
 		switch ($method) {
 			case 'PUT':
-				var_dump($toplist);
 			break;
 		}
 
