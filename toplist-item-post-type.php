@@ -33,7 +33,7 @@ function toplist_item_post_type() {
 		'label'                 => __( 'Toplist Item', 'sage' ),
 		'description'           => __( 'Toplist Items', 'sage' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'thumbnail', 'page-attributes'),
+		'supports'              => array( 'title', 'thumbnail'),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
@@ -61,7 +61,7 @@ add_action( 'init', 'toplist_item_post_type', 0 );
 function add_new_toplist_item_column($toplist_item_columns) {
   $toplist_item_columns['regulator'] = "Regulator";
   $toplist_item_columns['platform'] = "Payment Methods";
-  $toplist_item_columns['menu_order'] = "Order";
+  $toplist_item_columns['toplists'] = "Toplists";
   return $toplist_item_columns;
 }
 add_action('manage_edit-toplist_item_columns', 'add_new_toplist_item_column');
@@ -73,9 +73,18 @@ function show_order_column($name){
   global $post;
 
   switch ($name) {
-    case 'menu_order':
-      $order = $post->menu_order;
-      echo $order;
+    case 'toplists':
+		$toplists_id = get_post_meta($post->ID, 'toplist_item_toplist');
+		global $wpdb;
+		$toplist_text = rtrim(implode(', ', $toplists_id), ', ');
+
+		$toplists = $wpdb->get_results("SELECT name FROM {$wpdb->prefix}toplist WHERE id in ({$toplist_text})");
+		$toplist_string = null;
+
+		foreach ($toplists as $toplist) {
+			$toplist_string .= "<em>{$toplist->name}</em>, ";
+		}
+		echo rtrim($toplist_string, ', ');
       break;
     case 'regulator':
       echo get_post_meta($post->ID, 'toplist_item_regulator', true);
@@ -95,7 +104,7 @@ add_action('manage_toplist_item_posts_custom_column','show_order_column');
 function order_column_register_sortable($columns){
   $columns['regulator'] = 'regulator';
   $columns['platform'] = 'platform';
-  $columns['menu_order'] = 'menu_order';
+
   return $columns;
 }
 \add_filter('manage_edit-toplist_item_sortable_columns','order_column_register_sortable');
