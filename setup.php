@@ -5,6 +5,7 @@ $toplist_basepath = '/mods/toplist/';
 $toplist_includes = [
   'toplist-item-post-type.php',
   'toplist-item-review-post-type.php',
+  'toplist-item-type-taxonomy.php',
   'toplist-association-metabox.php',
   'toplistcontroller.php',
   'toplistmodel.php',
@@ -260,3 +261,55 @@ class TopListRequestHandler
 
 
 // exit;
+
+add_filter('query_vars', __NAMESPACE__ . '\\add_state_var', 0, 1);
+function add_state_var($vars){
+    $vars[] = 'toplist_type';
+    return $vars;
+}
+
+
+add_action( 'init', __NAMESPACE__ . '\\add_rewrite_rules' );  
+function add_rewrite_rules() {  
+
+    $arg = array(
+        'post_type' => 'toplist_item_review',
+        'no_conflict' => '1',
+        'posts_per_page' => '-1'
+    );
+
+    $toplist_item_reviews= new WP_Query($arg);
+
+    while($toplist_item_reviews->have_posts() ) : $toplist_item_reviews->the_post();
+
+        global $post;
+        $toplist_id = get_post_meta($post->ID, 'toplist_item_4review', true);
+        $types = get_the_terms($toplist_id, 'toplist_type' );
+        add_rewrite_rule(  $types[0]->slug.'/([^/]+)/?$', 'index.php?post_type=toplist_item_review&name=$matches[1]', 'top');
+
+    endwhile;
+} 
+
+add_action('delete_post',  __NAMESPACE__ . '\\flush_project_links', 99, 2);
+add_action('save_post',  __NAMESPACE__ . '\\flush_project_links', 99, 2);
+function flush_project_links( $post_id) {
+
+   if ( get_post_type( $post_id ) != 'toplist_item_review' )
+        return;
+
+   add_rewrite_rules();
+   flush_rewrite_rules();
+
+}
+
+add_filter( 'post_type_link', __NAMESPACE__ . '\\custom_permalinks', 10, 2 );
+function custom_permalinks( $permalink, $post ) {
+    if ( $post->post_type != 'toplist_item_review' )
+        return $permalink;
+
+    $toplist_id = get_post_meta($post->ID, 'toplist_item_4review', true);
+    $types = get_the_terms($toplist_id, 'toplist_type' );
+    $new_permalink = str_replace("toplist_item_review", $types[0]->slug, $permalink);
+
+    return $new_permalink;
+}

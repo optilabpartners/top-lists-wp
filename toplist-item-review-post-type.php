@@ -48,7 +48,7 @@ function toplist_item_review_post_type() {
 		'has_archive'           => false,		
 		'exclude_from_search'   => true,
 		'publicly_queryable'    => true,
-		'rewrite'               => array('slug' => 'forex-brokers', 'with_front' => false),
+		'rewrite'               => array('slug' => '', 'with_front' => false),
 		'capability_type'       => 'post',
 	);
 	register_post_type( 'toplist_item_review', $args );
