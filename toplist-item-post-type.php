@@ -60,7 +60,7 @@ add_action( 'init', 'toplist_item_post_type', 0 );
 */
 function add_new_toplist_item_column($toplist_item_columns) {
   $toplist_item_columns['regulator'] = "Regulator";
-  $toplist_item_columns['platform'] = "Payment Methods";
+  $toplist_item_columns['platform'] = "Platform";
   $toplist_item_columns['toplists'] = "Toplists";
   return $toplist_item_columns;
 }
