@@ -285,10 +285,11 @@ function add_rewrite_rules() {
         global $post;
         $toplist_id = get_post_meta($post->ID, 'toplist_item_4review', true);
         $types = get_the_terms($toplist_id, 'toplist_type' );
-        add_rewrite_rule(  $types[0]->slug.'/([^/]+)/?$', 'index.php?post_type=toplist_item_review&name=$matches[1]', 'top');
+        add_rewrite_rule(  $types[0]->slug . '/' . $post->post_name . '/?$', 'index.php?post_type=toplist_item_review&name=' . $post->post_name, 'top');
 
     endwhile;
 } 
+
 
 add_action('delete_post',  __NAMESPACE__ . '\\flush_project_links', 99, 2);
 add_action('save_post',  __NAMESPACE__ . '\\flush_project_links', 99, 2);
