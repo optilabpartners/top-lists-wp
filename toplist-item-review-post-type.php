@@ -46,7 +46,7 @@ function toplist_item_review_post_type() {
 		'show_in_nav_menus'     => true,
 		'can_export'            => true,
 		'has_archive'           => false,		
-		'exclude_from_search'   => true,
+		'exclude_from_search'   => false,
 		'publicly_queryable'    => true,
 		'rewrite'               => array('slug' => '', 'with_front' => false),
 		'capability_type'       => 'post',
