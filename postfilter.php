@@ -17,7 +17,6 @@ function add_toplist_filter_manage_toplist_items(){
     <option value=""><?php _e('Filter by TopLists', 'sage'); ?></option>
     <?php
         $current_v = isset($_GET['toplist'])? $_GET['toplist']:'';
-        var_dump($current_v);
         foreach ($toplists as $toplist) {
             printf
                 (
