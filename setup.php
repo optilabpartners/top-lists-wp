@@ -187,7 +187,7 @@ class TopListRequestHandler
 						foreach ($posts as &$post) {
 							if ($post->post_type = "toplist_item") {
 								$rank = get_post_meta($post->ID, 'toplist_item_toplist_' . $toplist_id . '_rank', true);
-								$post->rank = ($rank != "")? $rank: 0 ;
+								$post->rank = ($rank != "")? (int)$rank: 0 ;
 								$post->toplist = $toplist_id;
 							}
 						}
@@ -203,7 +203,8 @@ class TopListRequestHandler
 				$toplist_items = json_decode(file_get_contents("php://input"));
 				if ($toplist_items) {
 					foreach ($toplist_items as $toplist_item) {
-						update_post_meta( $toplist_item->ID, 'toplist_item_toplist_' . $toplist_item->toplist . '_rank', $toplist_item->rank );
+						delete_post_meta( $toplist_item->ID, 'toplist_item_toplist_' . $toplist_item->toplist . '_rank' );
+						$update = add_post_meta( $toplist_item->ID, 'toplist_item_toplist_' . $toplist_item->toplist . '_rank', $toplist_item->rank, true );
 					}
 				}
 			break;

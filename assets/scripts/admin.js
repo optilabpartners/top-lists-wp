@@ -206,6 +206,7 @@
 	        });            
 
 	        model.set('rank', position);
+	        console.log(model.toJSON());
 	        this.collection.add(model, {at: position});
 
 	        Backbone.sync('update', this.collection, { contentType: 'application/json', data: JSON.stringify(this.collection) });
@@ -248,6 +249,6 @@
         }
     });
     $( ".sortable" ).disableSelection();
-    $( ".sortable tr" ).css('cursor', 'move');
+    $( ".sortable tr td" ).css('cursor', 'move');
 
 }(jQuery));
