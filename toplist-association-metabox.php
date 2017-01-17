@@ -35,18 +35,11 @@ class TopListAssociationMetaBox extends CodeBox\CodeBox
         $results = $wpdb->get_results( "SELECT id, name from {$wpdb->prefix}toplist ORDER BY name" );
         ?>
         <div class="form-field">
-          <select multiple name="toplist_item_toplist[]" id="toplist_item_toplist" aria-required="true" style="width: 100%;" >
-            <option value="0">Select TopList</option>
-            <?php if ( count($results) > 0 ): ?>
-                <?php foreach ( $results as $result ): ?>
-                    <?php if ( in_array($result->id, $toplist_item_toplist)  ) : ?>
-            <option value="<?= $result->id ?>" selected ><?= $result->name ?></option>
-                    <?php else: ?>
-            <option value="<?= $result->id ?>"><?= $result->name ?></option>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            <?php endif; ?>
-          </select>
+        <?php if ( count($results) > 0 ): ?>
+          <?php foreach ( $results as $result ): ?>
+            <input type="checkbox" name="toplist_item_toplist[]" id="toplist_item_toplist" value="<?= $result->id ?>" <?= ( in_array($result->id, $toplist_item_toplist)  )? 'checked': ''; ?> > <?= $result->name ?><br>
+          <?php endforeach; ?>
+          <?php endif; ?>
         </div>
       <?php
       },
@@ -66,14 +59,11 @@ class TopListAssociationMetaBox extends CodeBox\CodeBox
     
     parent::save($post_id);
 
-
-    if ( ! isset( $_POST['toplist_item_toplist'] ) ) {
-      return;
-    }
     // add more if needed
     $toplists = $_POST['toplist_item_toplist'];
 
     delete_post_meta($post_id, 'toplist_item_toplist');
+
 
     foreach ($toplists as $toplist) {
       add_post_meta($post_id, 'toplist_item_toplist', $toplist);
