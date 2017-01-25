@@ -276,7 +276,8 @@ function add_rewrite_rules() {
     $arg = array(
         'post_type' => 'toplist_item_review',
         'no_conflict' => '1',
-        'posts_per_page' => '-1'
+        'posts_per_page' => '-1',
+        'status' => 'publish'
     );
 
     $toplist_item_reviews= new WP_Query($arg);
@@ -315,3 +316,10 @@ function custom_permalinks( $permalink, $post ) {
 
     return $new_permalink;
 }
+
+add_action( 'wp_insert_post', function($post_id) use ($post) {
+	// If this is just a revision, exit away.
+	if ( wp_is_post_revision( $post_id ) && $post->post_type !=  'toplist_item_review')
+		return;
+	flush_rewrite_rules();
+} );
