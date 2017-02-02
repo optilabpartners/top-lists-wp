@@ -61,8 +61,6 @@ class TopListAssociationMetaBox extends CodeBox\CodeBox
 
     // add more if needed
     $toplists = $_POST['toplist_item_toplist'];
-  
-    if (empty($toplists)) return;
 
     delete_post_meta($post_id, 'toplist_item_toplist');
 
