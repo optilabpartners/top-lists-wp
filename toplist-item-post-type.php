@@ -59,7 +59,6 @@ add_action( 'init', 'toplist_item_post_type', 0 );
 * add order column to admin listing screen for header text
 */
 function add_new_toplist_item_column($toplist_item_columns) {
-  $toplist_item_columns['regulator'] = "Regulator";
   $toplist_item_columns['platform'] = "Platform";
   $toplist_item_columns['toplists'] = "Toplists";
   return $toplist_item_columns;
@@ -85,9 +84,6 @@ function show_order_column($name){
 			$toplist_string .= "<em>{$toplist->name}</em>, ";
 		}
 		echo rtrim($toplist_string, ', ');
-      break;
-    case 'regulator':
-      echo get_post_meta($post->ID, 'toplist_item_regulator', true);
       break;
     case 'platform':
       echo get_post_meta($post->ID, 'toplist_item_platform', true);
