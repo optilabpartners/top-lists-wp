@@ -61,7 +61,11 @@ class TopListAssociationMetaBox extends CodeBox\CodeBox
 
     // add more if needed
     $toplists = $_POST['toplist_item_toplist'];
-
+    /* AJAX check  */
+    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+      /* special ajax here */
+      return;
+    }
     delete_post_meta($post_id, 'toplist_item_toplist');
 
     if(!empty($toplists)) {
