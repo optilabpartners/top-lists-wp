@@ -10,7 +10,7 @@ function add_toplist_filter_manage_toplist_items(){
 
     global $wpdb;
     $toplists = $wpdb->get_results( "SELECT id, name from {$wpdb->prefix}toplist ORDER BY name" );
-   
+
     ?>
     <label for="toplist" class="screen-reader-text">toplists</label>
     <select name="toplist">
@@ -34,7 +34,7 @@ function add_toplist_filter_manage_toplist_items(){
 add_action('restrict_manage_posts', __NAMESPACE__ . '\\add_toplist_filter_manage_toplist_items');
 
 
-add_filter( 'parse_query',  function( $query ){ 
+add_filter( 'parse_query',  function( $query ){
     global $pagenow, $post_type;
     if($post_type !== 'toplist_item')
     	return $query;
@@ -43,3 +43,11 @@ add_filter( 'parse_query',  function( $query ){
         $query->query_vars['meta_value'] = $_GET['toplist'];
     }
 });
+
+add_filter( 'post_thumbnail_html', function ( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
+    $post = get_post($post_id);
+    if ( !empty( $html ) && $post->post_type == 'toplist_item' ) {
+        $html .= '<small class="center-block at-risk">Your capital is at risk</small>';
+    }
+    return $html;
+}, 20, 5 );
