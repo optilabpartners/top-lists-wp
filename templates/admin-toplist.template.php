@@ -58,7 +58,7 @@
 
 <!-- Template -->
 <script type="text/template" id="toplist-items-list-template">
-<td><span class="glyphicon glyphicon-sort" aria-hidden="true"></span>&nbsp;<span class="name"><%= post_title %></span></td>
+<td><span class="notice inline"><%= rank + 1 %></span>&nbsp;<span class="glyphicon glyphicon-sort" aria-hidden="true"></span>&nbsp;<span class="name"><%= post_title %></span></td>
 <td><a id="btnEdit" href="/wp-admin/post.php?post=<%= ID %>&amp;action=edit" class="button button-default button-small">Edit</a></td>
 </script>
 <!-- End template
