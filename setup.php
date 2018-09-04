@@ -33,7 +33,7 @@ function setup() {
 
 
 \add_action( 'admin_menu', function() use ($toplist_basepath){
-	add_menu_page( 
+	add_menu_page(
 		'TopLists',
 		'TopLists',
 		'publish_posts',
@@ -52,8 +52,10 @@ function setup() {
 	}
 
 	wp_enqueue_style('toplist/bootstrapcss', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', array(), null);
+  wp_enqueue_style('toplist/admincss', Assets\asset_path('styles/admin.css'), array(), null);
+
 	wp_enqueue_script('toplist/bootstrapjs', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', ['jquery'], null, true);
-	wp_enqueue_script('toplist/admin', Assets\asset_path('scripts/admin.js'), ['jquery', 'backbone'], null, true);
+	wp_enqueue_script('toplist/admin', Assets\asset_path('scripts/toplist-admin.js'), ['jquery', 'backbone'], null, true);
 	wp_enqueue_script( 'jquery-ui-core' );
 	wp_enqueue_script( 'jquery-ui-widget' );
 	wp_enqueue_script( 'jquery-ui-mouse' );
@@ -124,7 +126,7 @@ class TopListRequestHandler
 				}
 				wp_die();
 				break;
-			
+
 			case 'GET':
 				$toplist = TopList\TopListController::fetchOne(
 					new TopList\TopListModel(
@@ -136,7 +138,7 @@ class TopListRequestHandler
 				wp_die();
 				break;
 		}
-		
+
 	}
 
 	public static function toplists()
@@ -144,7 +146,7 @@ class TopListRequestHandler
 
 		$method = self::method_identifier();
 
-		$toplists = TopList\TopListController::fetchMany();	
+		$toplists = TopList\TopListController::fetchMany();
 
 		echo json_encode($toplists);
 		wp_die();
@@ -156,12 +158,12 @@ class TopListRequestHandler
 		switch ($method) {
 			case 'GET':
 				$toplist_id = (int)$_SERVER['HTTP_TOPLISTID'];
-				
+
 				$args = array(
 				    //Type & Status Parameters
 				    'post_type'   => 'toplist_item',
 				    'post_status' => 'publish',
-				    
+
 				    //Order & Orderby Parameters
 				    'order'       			=> 'ASC',
 				    'orderby'   			=> 'meta_value_num',
@@ -216,7 +218,7 @@ class TopListRequestHandler
 	public static function toplist_item() {
 		$toplist = json_decode( file_get_contents( "php://input" ) );
 		$method = self::method_identifier();
-		
+
 		wp_die();
 		switch ($method) {
 			case 'PUT':
@@ -241,7 +243,7 @@ class TopListRequestHandler
 
 //FetchMany
 // TopList\TopListController::fetchMany(
-// 	[ 'description' => "Lorem Ipsum" ], 
+// 	[ 'description' => "Lorem Ipsum" ],
 // 	true
 // );
 
@@ -270,8 +272,8 @@ function add_state_var($vars){
 }
 
 
-add_action( 'init', __NAMESPACE__ . '\\add_rewrite_rules' );  
-function add_rewrite_rules() {  
+add_action( 'init', __NAMESPACE__ . '\\add_rewrite_rules' );
+function add_rewrite_rules() {
 
     $arg = array(
         'post_type' => 'toplist_item_review',
@@ -290,7 +292,7 @@ function add_rewrite_rules() {
         add_rewrite_rule(  $types[0]->slug . '/' . $post->post_name . '/?$', 'index.php?post_type=toplist_item_review&name=' . $post->post_name, 'top');
 
     endwhile;
-} 
+}
 
 
 add_action('delete_post',  __NAMESPACE__ . '\\flush_project_links', 99, 2);
