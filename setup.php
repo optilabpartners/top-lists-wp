@@ -52,7 +52,6 @@ function setup() {
 	}
 
 	wp_enqueue_style('toplist/bootstrapcss', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', array(), null);
-  wp_enqueue_style('toplist/admincss', Assets\asset_path('styles/admin.css'), array(), null);
 
 	wp_enqueue_script('toplist/bootstrapjs', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', ['jquery'], null, true);
 	wp_enqueue_script('toplist/admin', Assets\asset_path('scripts/toplist-admin.js'), ['jquery', 'backbone'], null, true);
