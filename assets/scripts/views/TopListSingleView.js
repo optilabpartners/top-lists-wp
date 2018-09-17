@@ -25,8 +25,10 @@
         return this.render();
       },
       update: function(e) {
-        this.model.set('name', this.$('#nameInput').val());
-        this.model.set('description', this.$('#descriptionInput').val());
+        this.model.set({
+          'name': this.$('#nameInput').val(),
+          'description': this.$('#descriptionInput').val()
+        });
         this.save(e);
       },
       delete: function() {
