@@ -44,15 +44,3 @@ add_filter( 'parse_query',  function( $query ){
     }
 });
 
-add_filter( 'post_thumbnail_html', function ( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
-    $post = get_post($post_id);
-    if ( !empty( $html ) && $post->post_type == 'toplist_item' ) {
-        $thumbnail_text = get_post_meta( $post->ID, 'thumbnail_text', true );
-        if ((bool)$thumbnail_text ) {
-            $html .= '<small class="center-block at-risk">' . $thumbnail_text . '</small>';
-        } else {
-            $html .= '<small class="center-block at-risk">Your capital is at risk</small>';
-        }
-    }
-    return $html;
-}, 20, 5 );
