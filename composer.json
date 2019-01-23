@@ -11,17 +11,16 @@
     ],
     "repositories": [
         {
-            "type": "git",
+            "type": "vcs",
             "url": "https://github.com/hitankar/WPMetaBoxBuilder.git"
         },
         {
-            "type": "git",
+            "type": "vcs",
             "url": "https://github.com/hitankar/wp-db.git"
-        },
-
+        }
     ],
     "require": {
-        "optilab/wp-meta-box-builder": "master",
-        "optilab/wp-db": "master"
+        "optilab/wp-meta-box-builder": "dev-master",
+        "optilab/wp-db": "dev-master"
     }
 }

@@ -1,0 +1,83 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "aceaf411700f92295a355c8648ddd029",
+    "packages": [
+        {
+            "name": "optilab/wp-db",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hitankar/wp-db.git",
+                "reference": "f34b059d53799e5bbd817fd262106b01a7a491e2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hitankar/wp-db/zipball/f34b059d53799e5bbd817fd262106b01a7a491e2",
+                "reference": "f34b059d53799e5bbd817fd262106b01a7a491e2",
+                "shasum": ""
+            },
+            "type": "library",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Hitankar Ray",
+                    "email": "hitankar@gmail.com"
+                }
+            ],
+            "description": "DB Library to manage custom tables",
+            "support": {
+                "source": "https://github.com/hitankar/wp-db/tree/master",
+                "issues": "https://github.com/hitankar/wp-db/issues"
+            },
+            "time": "2019-01-23T14:41:17+00:00"
+        },
+        {
+            "name": "optilab/wp-meta-box-builder",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hitankar/WPMetaBoxBuilder.git",
+                "reference": "508fffceddfafd689007427af83dbf52cb71c821"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hitankar/WPMetaBoxBuilder/zipball/508fffceddfafd689007427af83dbf52cb71c821",
+                "reference": "508fffceddfafd689007427af83dbf52cb71c821",
+                "shasum": ""
+            },
+            "type": "library",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Hitankar Ray",
+                    "email": "hitankar@gmail.com"
+                }
+            ],
+            "description": "Create object oriented WordPress metaboxes",
+            "support": {
+                "source": "https://github.com/hitankar/WPMetaBoxBuilder/tree/master",
+                "issues": "https://github.com/hitankar/WPMetaBoxBuilder/issues"
+            },
+            "time": "2019-01-23T14:24:44+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "optilab/wp-meta-box-builder": 20,
+        "optilab/wp-db": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
