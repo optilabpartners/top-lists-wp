@@ -1,0 +1,27 @@
+{
+    "name": "optilab/wp-toplist",
+    "description": "WordPress toplist module to be integrated with theme.",
+    "type": "library",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Hitankar Ray",
+            "email": "hitankar@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/hitankar/WPMetaBoxBuilder.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/hitankar/wp-db.git"
+        },
+
+    ],
+    "require": {
+        "optilab/wp-meta-box-builder": "master",
+        "optilab/wp-db": "master"
+    }
+}

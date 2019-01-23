@@ -1,6 +1,6 @@
 <?php
 
-$toplist_basepath = '/mods/toplist/';
+$toplist_basepath = 'app/TopList/';
 
 $toplist_includes = [
   'toplist-item-post-type.php',
@@ -14,6 +14,7 @@ $toplist_includes = [
 
 foreach ($toplist_includes as $file) {
   if (!$filepath = locate_template($toplist_basepath . $file)) {
+        var_dump($toplist_basepath . $file);
     trigger_error(sprintf(__('Error locating %s for inclusion', 'sage'), $file), E_USER_ERROR);
   }
 
