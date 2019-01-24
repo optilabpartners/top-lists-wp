@@ -20,7 +20,6 @@
         }
     ],
     "require": {
-        // "optilab/wp-meta-box-builder": "dev-master",
         "optilab/wp-db": "dev-master"
     }
 }
