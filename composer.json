@@ -9,6 +9,7 @@
             "email": "hitankar@gmail.com"
         }
     ],
+    "minimum-stability": "dev",
     "repositories": [
         {
             "type": "vcs",
@@ -20,6 +21,7 @@
         }
     ],
     "require": {
-        "optilab/wp-db": "dev-master"
+        "optilab/wp-meta-box-builder": "dev-master@dev",
+        "optilab/wp-db": "dev-master@dev"
     }
 }
