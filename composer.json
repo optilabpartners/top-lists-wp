@@ -21,7 +21,19 @@
         }
     ],
     "require": {
-        "optilab/wp-meta-box-builder": "~1.0.0",
-        "optilab/wp-db": "~1.0.0"
-    }
+        "optilab/wp-meta-box-builder": "dev-master",
+        "optilab/wp-db": "dev-master"
+    },
+    "autoload":     {
+        "psr-4": {
+            "OptiLab\\TopList\\": "app/"
+        },
+        "files": [
+            "app/postfilter.php",
+            "setup.php",
+            "app/Taxonomies/toplist-item-type-taxonomy.php",
+            "app/PostTypes/toplist-item-post-type.php",
+            "app/PostTypes/toplist-item-review-post-type.php",
+        ]
+    },
 }

@@ -1,35 +1,16 @@
 <?php
+namespace Optilab\TopList;
 
-$toplist_basepath = 'app/TopList/';
-
-$toplist_includes = [
-  'toplist-item-post-type.php',
-  'toplist-item-review-post-type.php',
-  'toplist-item-type-taxonomy.php',
-  'toplist-association-metabox.php',
-  'toplistcontroller.php',
-  'toplistmodel.php',
-  'postfilter.php',
-];
-
-foreach ($toplist_includes as $file) {
-  if (!$filepath = locate_template($toplist_basepath . $file)) {
-        var_dump($toplist_basepath . $file);
-    trigger_error(sprintf(__('Error locating %s for inclusion', 'sage'), $file), E_USER_ERROR);
-  }
-
-  require_once $filepath;
-}
-unset($file, $filepath);
-
-use Optilab\Mods\TopList;
-use Roots\Sage\DB;
+use Optilab\DB;
 use Roots\Sage\Assets;
+
+\MetaBoxes\TopListAssociationMetaBox::init();
 
 \add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
 
 function setup() {
-	TopList\TopListController::bootstrap();
+	\Controllers\TopListController::bootstrap();
+	\MetaBoxes\TopListAssociationMetaBox::init();
 }
 
 

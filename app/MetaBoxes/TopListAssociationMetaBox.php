@@ -84,4 +84,3 @@ class TopListAssociationMetaBox extends CodeBox\CodeBox
 
 }
 //Initiate the class
-TopListAssociationMetaBox::init();
