@@ -4,23 +4,28 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43847ff5d24c072c17a59e56c7d923b9",
+    "content-hash": "6bb9f6af5d2af378c49c8c64392f1661",
     "packages": [
         {
             "name": "optilab/wp-db",
-            "version": "v1.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hitankar/wp-db.git",
-                "reference": "f34b059d53799e5bbd817fd262106b01a7a491e2"
+                "reference": "7713ec33dbd9933dc5b9c9c37ddba8d4d7ee4319"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hitankar/wp-db/zipball/f34b059d53799e5bbd817fd262106b01a7a491e2",
-                "reference": "f34b059d53799e5bbd817fd262106b01a7a491e2",
+                "url": "https://api.github.com/repos/hitankar/wp-db/zipball/7713ec33dbd9933dc5b9c9c37ddba8d4d7ee4319",
+                "reference": "7713ec33dbd9933dc5b9c9c37ddba8d4d7ee4319",
                 "shasum": ""
             },
             "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Optilab\\DB\\": "app/"
+                }
+            },
             "license": [
                 "GPL-3.0-or-later"
             ],
@@ -32,26 +37,31 @@
             ],
             "description": "DB Library to manage custom tables",
             "support": {
-                "source": "https://github.com/hitankar/wp-db/tree/v1.0.0",
+                "source": "https://github.com/hitankar/wp-db/tree/master",
                 "issues": "https://github.com/hitankar/wp-db/issues"
             },
-            "time": "2019-01-23T14:41:17+00:00"
+            "time": "2019-01-24T14:08:31+00:00"
         },
         {
             "name": "optilab/wp-meta-box-builder",
-            "version": "v1.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hitankar/WPMetaBoxBuilder.git",
-                "reference": "508fffceddfafd689007427af83dbf52cb71c821"
+                "reference": "7cfd00a277f376baee2a629c465ca3f922e666f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hitankar/WPMetaBoxBuilder/zipball/508fffceddfafd689007427af83dbf52cb71c821",
-                "reference": "508fffceddfafd689007427af83dbf52cb71c821",
+                "url": "https://api.github.com/repos/hitankar/WPMetaBoxBuilder/zipball/7cfd00a277f376baee2a629c465ca3f922e666f9",
+                "reference": "7cfd00a277f376baee2a629c465ca3f922e666f9",
                 "shasum": ""
             },
             "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Optilab\\WPMetaBoxBuilder\\": "app/"
+                }
+            },
             "license": [
                 "GPL-3.0-or-later"
             ],
@@ -63,16 +73,19 @@
             ],
             "description": "Create object oriented WordPress metaboxes",
             "support": {
-                "source": "https://github.com/hitankar/WPMetaBoxBuilder/tree/v1.0.0",
+                "source": "https://github.com/hitankar/WPMetaBoxBuilder/tree/master",
                 "issues": "https://github.com/hitankar/WPMetaBoxBuilder/issues"
             },
-            "time": "2019-01-23T14:24:44+00:00"
+            "time": "2019-01-24T14:15:35+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "optilab/wp-meta-box-builder": 20,
+        "optilab/wp-db": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

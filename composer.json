@@ -33,7 +33,7 @@
             "setup.php",
             "app/Taxonomies/toplist-item-type-taxonomy.php",
             "app/PostTypes/toplist-item-post-type.php",
-            "app/PostTypes/toplist-item-review-post-type.php",
+            "app/PostTypes/toplist-item-review-post-type.php"
         ]
-    },
+    }
 }
