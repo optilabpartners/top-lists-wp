@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aceaf411700f92295a355c8648ddd029",
+    "content-hash": "e00da3cda8bb921f40aa64b9b698afff",
     "packages": [
         {
             "name": "optilab/wp-db",
@@ -71,7 +71,7 @@
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
         "optilab/wp-meta-box-builder": 20,
         "optilab/wp-db": 20
