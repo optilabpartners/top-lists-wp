@@ -21,7 +21,7 @@
         }
     ],
     "require": {
-        "optilab/wp-meta-box-builder": "dev-master@dev",
-        "optilab/wp-db": "dev-master@dev"
+        "optilab/wp-meta-box-builder": "~1.0.0",
+        "optilab/wp-db": "~1.0.0"
     }
 }
