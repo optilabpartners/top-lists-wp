@@ -12,19 +12,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hitankar/wp-db.git",
-                "reference": "7713ec33dbd9933dc5b9c9c37ddba8d4d7ee4319"
+                "reference": "e850d708e5eb13ab7677f195cf848b4543ecb649"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hitankar/wp-db/zipball/7713ec33dbd9933dc5b9c9c37ddba8d4d7ee4319",
-                "reference": "7713ec33dbd9933dc5b9c9c37ddba8d4d7ee4319",
+                "url": "https://api.github.com/repos/hitankar/wp-db/zipball/e850d708e5eb13ab7677f195cf848b4543ecb649",
+                "reference": "e850d708e5eb13ab7677f195cf848b4543ecb649",
                 "shasum": ""
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Optilab\\DB\\": "app/"
-                }
+                "classmap": [
+                    "app/"
+                ]
             },
             "license": [
                 "GPL-3.0-or-later"
@@ -40,7 +40,7 @@
                 "source": "https://github.com/hitankar/wp-db/tree/master",
                 "issues": "https://github.com/hitankar/wp-db/issues"
             },
-            "time": "2019-01-24T14:08:31+00:00"
+            "time": "2019-01-28T09:28:31+00:00"
         },
         {
             "name": "optilab/wp-meta-box-builder",
@@ -48,19 +48,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hitankar/WPMetaBoxBuilder.git",
-                "reference": "7cfd00a277f376baee2a629c465ca3f922e666f9"
+                "reference": "48969d1e02c06a1432b58ee0f54adcf3bd87bcf5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hitankar/WPMetaBoxBuilder/zipball/7cfd00a277f376baee2a629c465ca3f922e666f9",
-                "reference": "7cfd00a277f376baee2a629c465ca3f922e666f9",
+                "url": "https://api.github.com/repos/hitankar/WPMetaBoxBuilder/zipball/48969d1e02c06a1432b58ee0f54adcf3bd87bcf5",
+                "reference": "48969d1e02c06a1432b58ee0f54adcf3bd87bcf5",
                 "shasum": ""
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Optilab\\WPMetaBoxBuilder\\": "app/"
-                }
+                "classmap": [
+                    "app/"
+                ]
             },
             "license": [
                 "GPL-3.0-or-later"
@@ -76,7 +76,7 @@
                 "source": "https://github.com/hitankar/WPMetaBoxBuilder/tree/master",
                 "issues": "https://github.com/hitankar/WPMetaBoxBuilder/issues"
             },
-            "time": "2019-01-24T14:15:35+00:00"
+            "time": "2019-01-28T09:23:40+00:00"
         }
     ],
     "packages-dev": [],

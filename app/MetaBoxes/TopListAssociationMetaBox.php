@@ -1,5 +1,5 @@
 <?php
-namespace OptiLab\TopList\MetaBoxes;
+namespace Optilab\TopList\MetaBoxes;
 use Optilab\Mods\WP_MetaBox\TemplateMetaBox;
 use Optilab\Mods\WP_MetaBox\CodeBox;
 

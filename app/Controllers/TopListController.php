@@ -1,8 +1,8 @@
 <?php
 namespace Optilab\TopList\Controllers;
 
-use Roots\Sage\DB;
-use Optilab\Toplist\Models\TopListModel;
+use Optilab\DB;
+use Optilab\TopList\Models\TopListModel;
 
 /**
 * Toplist Manager
@@ -16,7 +16,7 @@ class TopListController
 
 	public static function bootstrap() {
 		global $wpdb;
-		Db\DB_Manager::execute(call_user_func(function() use ($wpdb) {
+		DB\DB_Manager::execute(call_user_func(function() use ($wpdb) {
 			$rows = array(
 				new DB\DB_Table_Column('id', 'int', null, false, false, true, true ),
 				new DB\DB_Table_Column('name', 'varchar(100)', null, true, true ),

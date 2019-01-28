@@ -1,7 +1,7 @@
 <?php
-namespace OptiLab\Toplist\Models;
+namespace Optilab\Toplist\Models;
 
-use Roots\Sage\DB;
+use Optilab\DB;
 
 /**
 * ToplistModel Class

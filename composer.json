@@ -25,9 +25,7 @@
         "optilab/wp-db": "dev-master"
     },
     "autoload":     {
-        "psr-4": {
-            "OptiLab\\TopList\\": "app/"
-        },
+        "classmap": ["app/"],
         "files": [
             "app/postfilter.php",
             "setup.php",
