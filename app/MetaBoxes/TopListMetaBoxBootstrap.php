@@ -6,7 +6,7 @@ use Optilab\WPMetaBoxBuilder;
 /**
 * Implement CodeBox class for the post/page that uses front-page.php template file.
 */
-class TopListAssociationMetaBox extends WPMetaBoxBuilder\Bootstrap
+class TopListMetaBoxBootstrap extends WPMetaBoxBuilder\Bootstrap
 {
 
   public function __construct()
