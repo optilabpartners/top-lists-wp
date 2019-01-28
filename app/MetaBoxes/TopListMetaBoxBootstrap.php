@@ -21,7 +21,7 @@ class TopListMetaBoxBootstrap extends WPMetaBoxBuilder\Bootstrap
   public function register($post)
   {
 
-    $setup = new Optilab\WPMetaBoxBuilder\MetaBox($post);
+    $setup = new WPMetaBoxBuilder\MetaBox($post);
 
     $setup->add_meta_box(
       'toplist_item_toplist_codebox',
