@@ -45,4 +45,4 @@ function custom_taxonomy() {
 	register_taxonomy( 'toplist_type', array( 'toplist_item' ), $args );
 
 }
-add_action( 'init', 'custom_taxonomy', 0 );
+add_action( 'init', __NAMESPACE__ . '\\custom_taxonomy', 0 );

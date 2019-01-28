@@ -54,7 +54,7 @@ function toplist_item_post_type() {
 	register_post_type( 'toplist_item', $args );
 
 }
-add_action( 'init', 'toplist_item_post_type', 0 );
+add_action( 'init', __NAMESPACE__ .'\\toplist_item_post_type', 0 );
 
 
 /**
@@ -65,7 +65,7 @@ function add_new_toplist_item_column($toplist_item_columns) {
   $toplist_item_columns['toplists'] = "Toplists";
   return $toplist_item_columns;
 }
-add_action('manage_edit-toplist_item_columns', 'add_new_toplist_item_column');
+add_action('manage_edit-toplist_item_columns', __NAMESPACE__ .'\\add_new_toplist_item_column');
 
 /**
 * show custom order column values
@@ -94,7 +94,7 @@ function show_order_column($name){
       break;
    }
 }
-add_action('manage_toplist_item_posts_custom_column','show_order_column');
+add_action('manage_toplist_item_posts_custom_column', __NAMESPACE__ .'\\show_order_column');
 
 /**
 * make column sortable
@@ -105,4 +105,4 @@ function order_column_register_sortable($columns){
 
   return $columns;
 }
-\add_filter('manage_edit-toplist_item_sortable_columns','order_column_register_sortable');
+\add_filter('manage_edit-toplist_item_sortable_columns', __NAMESPACE__ .'\\order_column_register_sortable');
