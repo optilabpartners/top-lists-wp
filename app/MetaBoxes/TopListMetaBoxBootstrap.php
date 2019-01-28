@@ -1,12 +1,12 @@
 <?php
 namespace Optilab\TopList\MetaBoxes;
-use Optilab\Mods\WP_MetaBox\TemplateMetaBox;
-use Optilab\Mods\WP_MetaBox\CodeBox;
+
+use Optilab\WPMetaBoxBuilder;
 
 /**
 * Implement CodeBox class for the post/page that uses front-page.php template file.
 */
-class TopListAssociationMetaBox extends CodeBox\CodeBox
+class TopListAssociationMetaBox extends WPMetaBoxBuilder\Bootstrap
 {
 
   public function __construct()
@@ -21,7 +21,7 @@ class TopListAssociationMetaBox extends CodeBox\CodeBox
   public function register($post)
   {
 
-    $setup = new TemplateMetaBox\TemplateMetaBox($post);
+    $setup = new Optilab\WPMetaBoxBuilder\MetaBox($post);
 
     $setup->add_meta_box(
       'toplist_item_toplist_codebox',

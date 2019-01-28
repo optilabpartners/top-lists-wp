@@ -8,7 +8,7 @@ use Roots\Sage\Assets;
 
 function setup() {
     Controllers\TopListController::bootstrap();
-    MetaBoxes\TopListAssociationMetaBox::init();
+    MetaBoxes\TopListMetaBoxBootstrap::init();
 }
 
 
