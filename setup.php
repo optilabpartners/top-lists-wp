@@ -3,7 +3,6 @@ namespace Optilab\TopList;
 
 use Optilab\DB;
 use App;
-global $composer;
 
 $toplist_basepath = dirname(__FILE__);
 
@@ -34,10 +33,11 @@ function setup() {
         return;
     }
 
+    
     wp_enqueue_style('toplist/bootstrapcss', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', array(), null);
-
+    wp_enqueue_style('toplist/admincss', get_template_directory_uri() . '/../dist/styles/admin.css', array(), null);
     wp_enqueue_script('toplist/bootstrapjs', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', ['jquery'], null, true);
-    wp_enqueue_script('toplist/admin', $toplist_basepath . '/dist/scripts/toplist-admin.js', ['jquery', 'backbone'], null, true);
+    wp_enqueue_script('toplist/admin', get_template_directory_uri() . '/../dist/scripts/toplist-admin.js', ['jquery', 'backbone'], null, true);
     wp_enqueue_script( 'jquery-ui-core' );
     wp_enqueue_script( 'jquery-ui-widget' );
     wp_enqueue_script( 'jquery-ui-mouse' );
