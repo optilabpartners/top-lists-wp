@@ -1,5 +1,8 @@
+import 'underscore';
+import 'backbone';
+import TopListModel from '../models/TopListModel';
 
-TLAApp.TopListCollection = Backbone.Collection.extend({
-  model: TLAApp.TopListModel,
+export default Backbone.Collection.extend({
+  model: TopListModel,
   url: ajaxurl+'?action=toplists',
 });

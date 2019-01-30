@@ -1,6 +1,7 @@
-var TLAApp = {};
+import 'underscore';
+import 'backbone';
 
-TLAApp.TopListModel = Backbone.Model.extend({
+export default Backbone.Model.extend({
   idAttribute: "id",
   url: ajaxurl+'?action=toplist',
   defaults: {
