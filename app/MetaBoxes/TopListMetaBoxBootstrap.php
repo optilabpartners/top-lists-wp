@@ -28,7 +28,7 @@ class TopListMetaBoxBootstrap extends WPMetaBoxBuilder\Bootstrap
       'TopList',
       function($post) {
         // Add a nonce field so we can check for it later.
-        wp_nonce_field( 'toplist_item_toplist_codebox', 'fxexplained_new_nonce' );
+        wp_nonce_field( 'toplist_item_toplist_codebox', 'metabox_new_nonce' );
         $toplist_item_toplist = get_post_meta($post->ID, 'toplist_item_toplist');
 
         global $wpdb;
@@ -45,7 +45,6 @@ class TopListMetaBoxBootstrap extends WPMetaBoxBuilder\Bootstrap
       },
       $post->post_type, 'side', 'low'
     );
-
 
     $setup->init(function() {
       return true;
