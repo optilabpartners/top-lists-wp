@@ -3,7 +3,7 @@ import 'jquery-ui';
 (function($) {
   // Toplist Model
   var TopListTemplate = Backbone.Model.extend({
-    idAttribute: "id",
+    idAttribute: 'id',
     url: ajaxurl+'?action=toplist_template',
     defaults: {
       name: '',
@@ -58,7 +58,7 @@ import 'jquery-ui';
         toplistOptions.highlight_first = $('#update_highlight_first').val();
         }
 
-      var $toplistFieldInputs = $("input[name*=\"update_fields\"]:checked");
+      var $toplistFieldInputs = $('input[name*="update_fields"]:checked');
       var toplistFields = {};
       $toplistFieldInputs.each(function(i, elem) {
         var id = $(elem).attr('id');
@@ -149,7 +149,7 @@ import 'jquery-ui';
       toplistOptions.highlight_first = $('#highlight_first').val();
       }
 
-    var $toplistFieldInputs = $("input[name*=\"field\"]:checked");
+    var $toplistFieldInputs = $('input[name*="field"]:checked');
     var toplistFields = {};
     if ($toplistFieldInputs.length === 0 && $('#highlight_first:checked').length == 0) {
       alert ('Atleast one field must be selected');
