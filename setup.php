@@ -3,6 +3,7 @@ namespace Optilab\TopList;
 
 use Optilab\DB;
 use App;
+global $post;
 
 $toplist_basepath = dirname(__FILE__);
 
@@ -11,6 +12,7 @@ $toplist_basepath = dirname(__FILE__);
 function setup() {
     Controllers\TopListController::bootstrap();
     MetaBoxes\TopListMetaBoxBootstrap::init();
+    MetaBoxes\TopListReviewMetaBoxBootstrap::init();
 }
 
 
@@ -33,7 +35,7 @@ function setup() {
         return;
     }
 
-    
+
     wp_enqueue_style('toplist/bootstrapcss', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', array(), null);
     wp_enqueue_style('toplist/admincss', get_template_directory_uri() . '/../dist/styles/admin.css', array(), null);
     wp_enqueue_script('toplist/bootstrapjs', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', ['jquery'], null, true);
@@ -113,3 +115,21 @@ add_action( 'wp_insert_post', function($post_id) use ($post) {
         return;
     flush_rewrite_rules();
 } );
+
+\add_action('admin_print_scripts', function() {
+    ?>
+    <script language="javascript" type="text/javascript">
+
+        jQuery(document).ready(function() {
+
+            jQuery('#post').submit(function() {
+
+              if(jQuery('#toplist_item_4review').val() == 0) {
+                alert('Select a Toplist Item');
+                return false;
+              }
+            });
+        });
+    </script>
+    <?php
+},99);

@@ -36,11 +36,16 @@ add_action('restrict_manage_posts', __NAMESPACE__ . '\\add_toplist_filter_manage
 
 add_filter( 'parse_query',  function( $query ){
     global $pagenow, $post_type;
-    if($post_type !== 'toplist_item')
-    	return $query;
-    if ( $_GET['post_type'] == $post_type && is_admin() && $pagenow=='edit.php' && isset($_GET['toplist']) && $_GET['toplist'] != '') {
+    if( $post_type !== 'toplist_item') {
+        return $query;
+    }
+    if (!isset($_GET['post_type'])) {
+        return $query;
+    }
+    else if ( $_GET['post_type'] == $post_type && is_admin() && $pagenow=='edit.php' && isset($_GET['toplist']) && $_GET['toplist'] != '') {
         $query->query_vars['meta_key'] = 'toplist_item_toplist';
         $query->query_vars['meta_value'] = $_GET['toplist'];
+        return $query;
     }
 });
 

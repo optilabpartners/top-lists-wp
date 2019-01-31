@@ -1,5 +1,5 @@
 <?php
-namespace Optilab\Toplist\Models;
+namespace Optilab\TopList\Models;
 
 use Optilab\DB;
 

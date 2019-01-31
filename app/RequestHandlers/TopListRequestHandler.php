@@ -1,6 +1,8 @@
 <?php
 
 namespace Optilab\TopList\RequestHandlers;
+use Optilab\TopList\Controllers;
+use Optilab\TopList\Models;
 
 /**
 * Toplist request handler
@@ -27,19 +29,19 @@ class TopListRequestHandler
 
         switch ($method) {
             case 'DELETE':
-                echo TopList\TopListController::deleteOne(
-                    new TopList\TopListModel(
+                echo Controllers\TopListController::deleteOne(
+                    new Models\TopListModel(
                         [ 'id' => $_SERVER['HTTP_ID'] ]
                 ));
                 wp_die();
                 break;
 
             case 'POST':
-                $toplist = TopList\TopListController::create(
-                    new TopList\TopListModel(
+                $toplist = Controllers\TopListController::create(
+                    new Models\TopListModel(
                         [ 'name' => $toplist->name, 'description' => $toplist->description ]
                 ));
-                if ($toplist instanceof TopList\TopListModel) {
+                if ($toplist instanceof Models\TopListModel) {
                     echo json_encode($toplist);
                 }
                 wp_die();
@@ -47,22 +49,22 @@ class TopListRequestHandler
 
             case 'PUT':
 
-                $toplist = TopList\TopListController::updateOne(
-                    new TopList\TopListModel(
+                $toplist = Controllers\TopListController::updateOne(
+                    new Models\TopListModel(
                         [ 'id' => $toplist->id, 'name' => $toplist->name, 'description' => $toplist->description ]
                 ));
-                if ($toplist instanceof TopList\TopListModel) {
+                if ($toplist instanceof Models\TopListModel) {
                     echo json_encode($toplist);
                 }
                 wp_die();
                 break;
 
             case 'GET':
-                $toplist = TopList\TopListController::fetchOne(
-                    new TopList\TopListModel(
+                $toplist = Controllers\TopListController::fetchOne(
+                    new Models\TopListModel(
                         [ 'id' => $toplist->name ]
                 ));
-                if ($toplist instanceof TopList\TopListModel) {
+                if ($toplist instanceof Models\TopListModel) {
                     echo json_encode($toplist);
                 }
                 wp_die();
@@ -75,7 +77,7 @@ class TopListRequestHandler
 
         $method = self::method_identifier();
 
-        $toplists = TopList\TopListController::fetchMany();
+        $toplists = Controllers\TopListController::fetchMany();
 
         echo json_encode($toplists);
         wp_die();
