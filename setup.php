@@ -34,12 +34,23 @@ function setup() {
     if ( 'toplevel_page_toplists' != $hook ) {
         return;
     }
-
+    $asset_path = null;
+    if (function_exists('\\App\\asset_path')) {
+        $asset_path = 
+    } else {
+    }
 
     wp_enqueue_style('toplist/bootstrapcss', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', array(), null);
-    wp_enqueue_style('toplist/admincss', get_template_directory_uri() . '/../dist/styles/admin.css', array(), null);
     wp_enqueue_script('toplist/bootstrapjs', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', ['jquery'], null, true);
-    wp_enqueue_script('toplist/admin', get_template_directory_uri() . '/../dist/scripts/toplist-admin.js', ['jquery', 'backbone'], null, true);
+    
+    if (function_exists('\\App\\asset_path')) {
+        wp_enqueue_style('toplist/admincss', \App\asset_path('styles/admin.css'), array('toplist/bootstrapcss'), null);
+        wp_enqueue_script('toplist/admin', \App\asset_path('scripts/toplist-admin.js'), ['jquery', 'toplist/bootstrapjs'], null, true);
+    } else {
+        wp_enqueue_style('toplist/admincss', get_template_directory_uri() . '/../dist/styles/admin.css', array(), null);
+        wp_enqueue_script('toplist/admin', get_template_directory_uri() . '/../dist/scripts/toplist-admin.js', ['jquery', 'backbone'], null, true);
+    }
+    
     wp_enqueue_script( 'jquery-ui-core' );
     wp_enqueue_script( 'jquery-ui-widget' );
     wp_enqueue_script( 'jquery-ui-mouse' );
