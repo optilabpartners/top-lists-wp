@@ -85,7 +85,12 @@ function add_rewrite_rules() {
         global $post;
         $toplist_id = get_post_meta($post->ID, 'toplist_item_4review', true);
         $types = get_the_terms($toplist_id, 'toplist_type' );
-        add_rewrite_rule(  $types[0]->slug . '/' . $post->post_name . '/?$', 'index.php?post_type=toplist_item_review&name=' . $post->post_name, 'top');
+        if($types != false) {
+            add_rewrite_rule(  $types[0]->slug . '/' . $post->post_name . '/?$', 'index.php?post_type=toplist_item_review&name=' . $post->post_name, 'top');
+        } else {
+            add_rewrite_rule(  '/' . $post->post_name . '/?$', 'index.php?post_type=toplist_item_review&name=' . $post->post_name, 'top');
+        }
+            
 
     endwhile;
 }
