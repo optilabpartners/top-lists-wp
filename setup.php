@@ -40,7 +40,7 @@ function setup() {
     
     if (function_exists('\\App\\asset_path')) {
         wp_enqueue_style('toplist/admincss', \App\asset_path('styles/admin.css'), array('toplist/bootstrapcss'), null);
-        wp_enqueue_script('toplist/admin', \App\asset_path('scripts/toplist-admin.js'), ['jquery', 'toplist/bootstrapjs'], null, true);
+        wp_enqueue_script('toplist/admin', \App\asset_path('scripts/toplist-admin.js'), ['jquery', 'backbone'], null, true);
     } else {
         wp_enqueue_style('toplist/admincss', get_template_directory_uri() . '/../dist/styles/admin.css', array(), null);
         wp_enqueue_script('toplist/admin', get_template_directory_uri() . '/../dist/scripts/toplist-admin.js', ['jquery', 'backbone'], null, true);
