@@ -34,11 +34,6 @@ function setup() {
     if ( 'toplevel_page_toplists' != $hook ) {
         return;
     }
-    $asset_path = null;
-    if (function_exists('\\App\\asset_path')) {
-        $asset_path = 
-    } else {
-    }
 
     wp_enqueue_style('toplist/bootstrapcss', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', array(), null);
     wp_enqueue_script('toplist/bootstrapjs', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', ['jquery'], null, true);
