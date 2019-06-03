@@ -31,10 +31,10 @@ function add_toplist_filter_manage_toplist_items(){
     <?php
 
 }
-add_action('restrict_manage_posts', __NAMESPACE__ . '\\add_toplist_filter_manage_toplist_items');
+\add_action('restrict_manage_posts', __NAMESPACE__ . '\\add_toplist_filter_manage_toplist_items');
 
 
-add_filter( 'parse_query',  function( $query ){
+\add_filter( 'parse_query',  function( $query ){
     global $pagenow, $post_type;
     if( $post_type !== 'toplist_item') {
         return $query;
