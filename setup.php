@@ -1,11 +1,15 @@
 <?php
 namespace Optilab\TopList;
 
+if (!function_exists('add_actiomn')) return false;
+
 use Optilab\DB;
 use App;
 global $post;
 
 $toplist_basepath = dirname(__FILE__);
+
+
 
 \add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
 
@@ -14,6 +18,8 @@ function setup() {
     MetaBoxes\TopListMetaBoxBootstrap::init();
     MetaBoxes\TopListReviewMetaBoxBootstrap::init();
 }
+
+add_action( 'init', 'Optilab\TopList\Taxonomies\custom_taxonomy', 99);
 
 
 \add_action( 'admin_menu', function() use ($toplist_basepath){

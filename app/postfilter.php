@@ -1,6 +1,8 @@
 <?php
 namespace Optilab\Mods\TopList;
 
+if (!function_exists('add_actiomn')) return false;
+
 function add_toplist_filter_manage_toplist_items(){
 
     //execute only on the 'post' content type

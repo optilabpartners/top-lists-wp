@@ -1,6 +1,8 @@
 <?php
 namespace Optilab\TopList\Taxonomies;
 
+if (!function_exists('add_actiomn')) return false;
+
 // Register Custom Taxonomy
 function custom_taxonomy() {
 

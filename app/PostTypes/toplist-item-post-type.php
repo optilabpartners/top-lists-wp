@@ -1,6 +1,8 @@
 <?php
 namespace Optilab\TopList\PostTypes;
 
+if (!function_exists('add_actiomn')) return false;
+
 // Register Custom Post Type
 function toplist_item_post_type() {
 
