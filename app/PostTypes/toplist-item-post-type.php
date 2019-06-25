@@ -78,6 +78,12 @@ function show_order_column($name){
   switch ($name) {
     case 'toplists':
 		$toplists_id = get_post_meta($post->ID, 'toplist_item_toplist');
+
+		if(count($toplists_id) == 0) {
+			echo "-";
+			return false;
+		}
+		
 		global $wpdb;
 		$toplist_text = rtrim(implode(', ', $toplists_id), ', ');
 
