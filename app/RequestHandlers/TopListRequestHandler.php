@@ -122,6 +122,7 @@ class TopListRequestHandler
                                 $rank = get_post_meta($post->ID, 'toplist_item_toplist_' . $toplist_id . '_rank', true);
                                 $post->rank = ($rank != "")? (int)$rank: 0 ;
                                 $post->toplist = $toplist_id;
+                                apply_filters('admin_toplist_toplist_items', $post);
                             }
                         }
                     }
