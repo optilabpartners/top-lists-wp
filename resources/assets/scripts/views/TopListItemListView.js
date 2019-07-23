@@ -26,8 +26,8 @@ export default Backbone.View.extend({
     var self = this;
     this.listenToOnce(this.collection, 'sync', function() {
       self.makeSortable();
-      self.getRowOptions();
-      self.changeRowLevel();
+      //self.getRowOptions();
+      //self.changeRowLevel();
     });
 
     this.collection.fetch({
