@@ -26,10 +26,11 @@
 			<table class="wp-list-table widefat striped table-responsive">
 				<thead>
 					<tr><th>TopList Item <em>(Ranked)</em></th>
+					<th></th>
 					<th>Action</th></tr>
 				</thead>
 				<tbody class="toplist-items sortable" id="toplist-items-container-template">
-					<tr><td colspan="2"><div class="alert alert-warning">Select a Toplist to show TopList Items</div></td></tr>
+					<tr><td colspan="3"><div class="alert alert-warning">Select a Toplist to show TopList Items</div></td></tr>
 				</tbody>
 			</table>
 
@@ -59,6 +60,13 @@
 <!-- Template -->
 <script type="text/template" id="toplist-items-list-template">
 <td><span class="notice inline"><%= rank + 1 %></span>&nbsp;<span class="glyphicon glyphicon-sort" aria-hidden="true"></span>&nbsp;<span class="name"><%= post_title %></span></td>
+<% if (typeof(metas) !== "undefined") { %>
+	<td>
+	<% _.each(meta, function(item){ %>
+        <span class="badge"><%= item %></span>&nbsp;
+	<% }); %>
+	</td>
+<% } %>
 <td><a id="btnEdit" href="/wp-admin/post.php?post=<%= ID %>&amp;action=edit" class="button button-default button-small">Edit</a></td>
 </script>
 <!-- End template
