@@ -62,7 +62,7 @@
 <td><span class="notice inline"><%= rank + 1 %></span>&nbsp;<span class="glyphicon glyphicon-sort" aria-hidden="true"></span>&nbsp;<span class="name"><%= post_title %></span></td>
 <% if (typeof(metas) !== "undefined") { %>
 	<td>
-	<% _.each(meta, function(item){ %>
+	<% _.each(metas, function(item){ %>
         <span class="badge"><%= item %></span>&nbsp;
 	<% }); %>
 	</td>
