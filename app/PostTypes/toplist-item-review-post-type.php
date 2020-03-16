@@ -52,6 +52,7 @@ function toplist_item_review_post_type() {
 		'publicly_queryable'    => true,
 		'rewrite'               => array('slug' => '', 'with_front' => false),
 		'capability_type'       => 'post',
+	    'show_in_rest'          => true,
 	);
 	register_post_type( 'toplist_item_review', $args );
 
